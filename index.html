@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Siswa SMAN 1 Pangkah - Ricky Winata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+       
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e6f0ff;
+            color: #2c3e50;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+        }
+       
+        .container.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+       
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #3498db;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #2980b9;
+            margin-bottom: 5px;
+            font-size: 2.8em;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        .subheader {
+            color: #e74c3c;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        .major {
+            font-style: italic;
+            color: #95a5a6;
+        }
+        
+       
+        h2 {
+            color: #27ae60;
+            border-left: 6px solid #f39c12;
+            padding-left: 12px;
+            margin-top: 30px;
+            font-weight: 700;
+            position: relative;
+        }
+        h2::before { 
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: #f39c12;
+            transition: width 0.3s ease-out;
+        }
+        section:hover h2::before {
+            width: 100%;
+        }
+
+        
+        .section-content ul {
+            list-style: none; 
+            padding-left: 0;
+        }
+        .section-content li {
+            margin-bottom: 8px;
+            position: relative; 
+            padding-left: 25px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-content li::before {
+            content: '•';
+            color: #3498db;
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        .container.loaded .section-content li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .container.loaded .section-content li:nth-child(1) { transition-delay: 0.2s; }
+        .container.loaded .section-content li:nth-child(2) { transition-delay: 0.4s; }
+        .container.loaded .section-content li:nth-child(3) { transition-delay: 0.6s; }
+        .container.loaded .section-content li:nth-child(4) { transition-delay: 0.8s; }
+        .container.loaded .section-content li:nth-child(5) { transition-delay: 1.0s; }
+
+
+      
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 10px 15px; 
+            font-weight: bold;
+            padding: 8px 15px;
+            border: 2px solid #3498db;
+            border-radius: 25px; 
+            transition: all 0.3s ease-in-out; 
+            position: relative;
+            overflow: hidden; 
+        }
+        .social-links a::before { 
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: all 0.5s;
+        }
+        .social-links a:hover {
+            background-color: #3498db;
+            color: #ffffff;
+            transform: translateY(-5px) scale(1.05); 
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        .social-links a:hover::before {
+            left: 100%;
+        }
+
+       
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            margin: 25px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>RICKY WINATA</h1>
+            <p class="subheader">Siswa Kelas:XII.4 SMAN 1 PANGKAH</p>
+            <p class="major">Jurusan:IPS</p>
+            <p style="color: #7f8c8d; font-style: italic;">Jika mereka menertawakanmu maka biarkanlah mereka tertawa sampai puas</p>
+        </header>
+
+        <section class="about-me">
+            <h2>📚 Tentang Saya & Cita-Cita</h2>
+            <div class="section-content">
+                <p>Halo Saya adalah siswa SMAN 1 PANGKAH yang bersemangat di bidang Informatika Dan Matematika. Saya tidak aktif dalam kegiatan apapun disekolah karena menurut saya itu membosankan. Cita-cita saya adalah melanjutkan studi di jurusan Teknik Informatika dan menjadi Web Development Atau CyberSecurity. Saya percaya bahwa pengalaman adalah kunci untuk mencapai kesuksesan</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="achievements">
+            <h2>🏆 Prestasi & Kegiatan</h2>
+            <div class="section-content">
+                <ul>
+                    <li>*Organisasi:Tidak Ada</li>
+                    <li>*Prestasi:Tidak Ada</li>
+                    <li>*Keahlian:Coding dasar,Mekanik</li>
+                    <li>*Kegiatan Sukarelawan: Membantu orang tua bekerja saat hari libur</li>
+                </ul>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="interests">
+            <h2>🎨 Minat & Hobi</h2>
+            <div class="section-content">
+                <p>Di luar kegiatan sekolah, saya sangat menikmati:</p>
+                <ul>
+                    <li>Hobi Utama:Coding Dasar,Bermain Game</li>
+                    <li>Minat Khusus: Komputer Dan Teknologi Masa Kini</li>
+                    <li>Skill Tambahan:Mekanik</li>
+                </ul>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="contact">
+            <h2>💬 Hubungi Saya</h2>
+            <div class="section-content social-links">
+                <p>Terhubunglah dengan saya:</p>
+                <a href="https://www.instagram.com/rvn.ata?igsh=MWw4MHNmZG1pMWFiYw==" target="_blank">📸 Instagram</a>
+                <a href="rickywinata80@gmail.com" target="_blank">📧 Email</a>
+                <a href="https://www.threads.com/@rvn.ata" target="_blank"> Threads</a> 
+            </div>
+        </section>
+        
+    </div>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.container');
+            container.classList.add('loaded');  
+        });
+    </script>
+
+</body>
+</html>
