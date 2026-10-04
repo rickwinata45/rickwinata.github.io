@@ -1,0 +1,868 @@
+/* =========================================================
+   RICKY WINATA — PORTFOLIO
+   style.css
+
+   Struktur file:
+   1. Design Tokens (variabel warna, font, radius)
+   2. Reset & Base
+   3. Utilities (reveal, tombol, tag)
+   4. Navbar
+   5. Hero
+   6. About (neofetch card)
+   7. Favorites (waifu/karakter)
+   8. Contact
+   9. Footer
+   10. Responsive
+   11. Reduced Motion
+   ========================================================= */
+
+/* ---------- 1. DESIGN TOKENS ---------- */
+:root {
+  /* Warna dasar */
+  --ink: #0a0e16;
+  --panel: #0f1620;
+  --panel-alt: #111a26;
+  --steel: #1e2a38;
+  --steel-soft: #16202c;
+
+  /* Teks */
+  --fog: #b8c4d0;
+  --fog-dim: #7c8a99;
+  --white: #eef3f8;
+
+  /* Aksen neon */
+  --blue: #00d4ff;
+  --green: #39ff9e;
+  --amber: #ffb454;
+
+  /* Tipografi */
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  /* Lainnya */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+  --nav-height: 64px;
+  --max-width: 1100px;
+}
+
+/* ---------- 2. RESET & BASE ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--fog);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image:
+    linear-gradient(var(--steel-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--steel-soft) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-attachment: fixed;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+section {
+  scroll-margin-top: var(--nav-height);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 100px 24px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-mono);
+  color: var(--white);
+  line-height: 1.2;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.text-blue { color: var(--blue); }
+.text-green { color: var(--green); }
+.text-dim { color: var(--fog-dim); }
+
+/* Overlay scanline dekoratif, sangat halus */
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.015) 0px,
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+/* ---------- 3. UTILITIES ---------- */
+
+/* Elemen yang akan muncul via IntersectionObserver di script.js */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.5);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--fog);
+  border-color: var(--steel);
+}
+
+.btn-outline:hover {
+  border-color: var(--green);
+  color: var(--green);
+  box-shadow: 0 0 20px rgba(57, 255, 158, 0.2);
+}
+
+.section-head {
+  margin-bottom: 40px;
+}
+
+.section-eyebrow {
+  font-family: var(--font-mono);
+  color: var(--green);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  vertical-align: middle;
+  margin-left: 8px;
+  border: 1px solid;
+}
+
+.tag-blue   { color: var(--blue);  border-color: rgba(0, 212, 255, 0.4);  background: rgba(0, 212, 255, 0.08); }
+.tag-green  { color: var(--green); border-color: rgba(57, 255, 158, 0.4); background: rgba(57, 255, 158, 0.08); }
+.tag-amber  { color: var(--amber); border-color: rgba(255, 180, 84, 0.4); background: rgba(255, 180, 84, 0.08); }
+
+/* Dot ala traffic-light terminal, dipakai berulang */
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-red    { background: #ff5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green  { background: #28c840; }
+
+/* ---------- 4. NAVBAR ---------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background: rgba(10, 14, 22, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--steel);
+  transition: background var(--transition);
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-path {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--fog);
+  margin-left: 6px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--fog-dim);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  position: relative;
+  transition: color var(--transition);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 2px;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--white);
+}
+
+.nav-link.active {
+  color: var(--blue);
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--fog);
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* ---------- 5. HERO ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: calc(var(--nav-height) + 40px);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  color: var(--green);
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+}
+
+.hero-name {
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  font-weight: 700;
+  min-height: 1.2em;
+}
+
+.hero-type-line {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--blue);
+  margin: 18px 0 22px;
+  min-height: 1.6em;
+}
+
+.prompt {
+  color: var(--green);
+  margin-right: 8px;
+}
+
+.cursor {
+  display: inline-block;
+  color: var(--blue);
+  animation: blink 1s step-end infinite;
+}
+
+.cursor-name {
+  color: var(--white);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-desc {
+  color: var(--fog);
+  font-size: 1.02rem;
+  max-width: 46ch;
+  margin-bottom: 34px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* --- Foto profil: floating + glow + tilt 3D --- */
+.hero-photo {
+  display: flex;
+  justify-content: center;
+}
+
+.float-wrapper {
+  animation: floatY 4.5s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+.photo-frame {
+  position: relative;
+  width: min(320px, 70vw);
+  aspect-ratio: 1 / 1;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+}
+
+.photo-glow {
+  position: absolute;
+  inset: -14px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: conic-gradient(from 0deg, var(--blue), var(--green), var(--blue));
+  filter: blur(22px);
+  opacity: 0.45;
+  animation: spinGlow 7s linear infinite;
+  transition: opacity var(--transition);
+}
+
+.photo-frame:hover .photo-glow {
+  opacity: 0.8;
+}
+
+@keyframes spinGlow {
+  to { transform: rotate(360deg); }
+}
+
+.photo-clip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--panel);
+  border: 1px solid var(--steel);
+  overflow: hidden;
+}
+
+.photo-clip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Fallback tampilan jika foto belum ditambahkan / gagal load */
+.photo-clip.no-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--panel), var(--panel-alt));
+}
+
+.photo-clip.no-photo::after {
+  content: '</>';
+  font-family: var(--font-mono);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--blue);
+  opacity: 0.85;
+}
+
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 60px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--fog-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(var(--green), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ---------- 6. ABOUT (neofetch card) ---------- */
+.neofetch-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 40px;
+  align-items: center;
+  background: rgba(15, 22, 32, 0.55);
+  border: 1px solid var(--steel);
+  border-radius: var(--radius);
+  padding: 36px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.neofetch-art {
+  font-family: var(--font-mono);
+  color: var(--green);
+  font-size: 0.85rem;
+  line-height: 1.3;
+  white-space: pre;
+}
+
+.neofetch-user {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.neofetch-rule {
+  height: 1px;
+  background: var(--steel);
+  margin: 12px 0 16px;
+}
+
+.neofetch-list li {
+  display: flex;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  padding: 4px 0;
+}
+
+.neofetch-list .key {
+  color: var(--blue);
+  min-width: 110px;
+  flex-shrink: 0;
+}
+
+.neofetch-list .val {
+  color: var(--fog);
+}
+
+.neofetch-list .val.highlight {
+  color: var(--amber);
+  font-weight: 600;
+}
+
+.neofetch-palette {
+  display: flex;
+  gap: 6px;
+  margin-top: 18px;
+}
+
+.neofetch-palette span {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+}
+
+.neofetch-palette span:nth-child(1) { background: #ff5f57; }
+.neofetch-palette span:nth-child(2) { background: #febc2e; }
+.neofetch-palette span:nth-child(3) { background: #28c840; }
+.neofetch-palette span:nth-child(4) { background: var(--blue); }
+.neofetch-palette span:nth-child(5) { background: var(--green); }
+.neofetch-palette span:nth-child(6) { background: var(--amber); }
+.neofetch-palette span:nth-child(7) { background: var(--fog); }
+.neofetch-palette span:nth-child(8) { background: var(--white); }
+
+.about-note {
+  margin-top: 28px;
+  color: var(--fog-dim);
+  max-width: 70ch;
+}
+
+/* ---------- 7. FAVORITES (waifu/karakter) ---------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: rgba(15, 22, 32, 0.5);
+  border: 1px solid var(--steel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 212, 255, 0.12);
+}
+
+.card-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--panel-alt);
+  border-bottom: 1px solid var(--steel);
+}
+
+.card-filename {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fog-dim);
+  margin-left: 8px;
+}
+
+.card-body {
+  padding: 22px;
+}
+
+.card-body h3 {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.card-body p {
+  font-size: 0.92rem;
+  color: var(--fog);
+  margin-bottom: 16px;
+}
+
+/* Gambar karakter di dalam kartu */
+.card-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--steel);
+  margin-bottom: 16px;
+}
+
+/* Rating bintang */
+.fav-rating {
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  margin-bottom: 14px;
+}
+
+/* List alasan suka karakter */
+.fav-reasons {
+  list-style: disc;
+  padding-left: 18px;
+  margin-bottom: 16px;
+  color: var(--fog);
+  font-size: 0.88rem;
+}
+
+.fav-reasons li {
+  margin-bottom: 6px;
+}
+
+/* Badge status di bawah kartu */
+.fav-status {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--fog-dim);
+}
+
+.tech-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.tech-tags li {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--fog-dim);
+  border: 1px solid var(--steel);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.card-links {
+  display: flex;
+  gap: 18px;
+}
+
+.card-link {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--blue);
+  transition: color var(--transition);
+}
+
+.card-link:hover {
+  color: var(--green);
+}
+
+.projects-note {
+  margin-top: 24px;
+  font-size: 0.85rem;
+  color: var(--fog-dim);
+  font-style: italic;
+}
+
+/* ---------- 8. CONTACT ---------- */
+.contact-terminal {
+  background: rgba(15, 22, 32, 0.55);
+  border: 1px solid var(--steel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.contact-body {
+  padding: 32px;
+}
+
+.contact-cmd {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--fog);
+  margin-bottom: 6px;
+}
+
+.contact-out {
+  font-family: var(--font-mono);
+  color: var(--green);
+  margin-bottom: 26px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--fog);
+  padding: 10px 14px;
+  border: 1px solid var(--steel);
+  border-radius: var(--radius-sm);
+  width: fit-content;
+  transition: border-color var(--transition), color var(--transition), transform var(--transition);
+}
+
+.contact-item .icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.contact-item:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: translateX(4px);
+}
+
+/* ---------- 9. FOOTER ---------- */
+.site-footer {
+  text-align: center;
+  padding: 40px 24px 50px;
+  border-top: 1px solid var(--steel);
+}
+
+.footer-prompt {
+  font-family: var(--font-mono);
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--fog-dim);
+}
+
+/* ---------- 10. RESPONSIVE ---------- */
+@media (max-width: 860px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-photo {
+    order: -1;
+  }
+
+  .neofetch-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: left;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: rgba(10, 14, 22, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--steel);
+    padding: 12px;
+    gap: 4px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition);
+  }
+
+  .nav-links.open {
+    max-height: 280px;
+  }
+
+  .brand-path {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 72px 18px;
+  }
+
+  .neofetch-list .key {
+    min-width: 90px;
+  }
+}
+
+/* ---------- 11. REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .float-wrapper,
+  .photo-glow,
+  .scroll-line,
+  .cursor {
+    animation: none !important;
+  }
+
+  .reveal {
+    transition: none;
+  }
+
+  .photo-frame {
+    transition: none;
+  }
+}

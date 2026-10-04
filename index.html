@@ -1,352 +1,256 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Ricky Winata | Calon Web Developer</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        /* TEMA CYBERSECURITY / CODING (Dark Theme) */
-        :root {
-            --bg-color: #0f172a; /* Warna latar belakang biru sangat gelap */
-            --text-color: #e2e8f0; /* Warna teks abu terang */
-            --primary-color: #0ea5e9; /* Warna biru neon / cyan */
-            --card-bg: #1e293b; /* Warna latar belakang kotak-kotak (card) */
-            --hover-color: #38bdf8;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ricky Winata Website</title>
+  <meta name="description" content="Ricky Winata — Web Developer, Technology & Cybersecurity Enthusiast.">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Consolas', 'Courier New', Courier, monospace; /* Font ala programmer */
-            scroll-behavior: smooth;
-        }
+ 
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a0e16'/%3E%3Ctext x='50' y='68' font-size='55' font-family='monospace' fill='%2339ff9e' text-anchor='middle'%3E%3E_%3C/text%3E%3C/svg%3E">
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        /* --- NAVIGASI --- */
-        header {
-            background-color: rgba(15, 23, 42, 0.9);
-            padding: 1rem 5%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #334155;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* --- HERO SECTION (Bagian Atas) --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 100px 20px 20px;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-        }
-
-        .hero-badge {
-            background-color: rgba(14, 165, 233, 0.1);
-            color: var(--primary-color);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            border: 1px solid var(--primary-color);
-            font-family: sans-serif;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        .hero h2 {
-            font-size: 1.2rem;
-            color: #94a3b8;
-            margin-bottom: 30px;
-        }
-
-        /* Animasi Efek Mengetik */
-        .typewriter h2 {
-            overflow: hidden;
-            border-right: .15em solid var(--primary-color);
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .1em;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary-color); }
-        }
-
-        .quote {
-            font-style: italic;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            color: #cbd5e1;
-            border-left: 4px solid var(--primary-color);
-            padding-left: 15px;
-            text-align: left;
-            font-family: sans-serif;
-        }
-
-        /* --- SECTIONS UMUM --- */
-        section {
-            padding: 80px 5%;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: var(--primary-color);
-            font-family: 'Segoe UI', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* --- GRID LAYOUT (Untuk membagi kotak-kotak) --- */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.1);
-            border-color: var(--primary-color);
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.3rem;
-        }
-
-        .card p, .card ul {
-            color: #cbd5e1;
-            font-size: 1rem;
-        }
-
-        .card ul {
-            list-style-position: inside;
-        }
-
-        .card ul li {
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-            border-bottom: 1px dashed #334155;
-        }
-
-        .card ul li:last-child {
-            border-bottom: none;
-        }
-
-        /* --- TOMBOL KONTAK --- */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            text-decoration: none;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            transition: all 0.3s;
-            font-family: 'Segoe UI', sans-serif;
-            font-weight: bold;
-        }
-
-        .social-btn:hover {
-            background-color: var(--primary-color);
-            color: #fff;
-            border-color: var(--primary-color);
-            transform: scale(1.05);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #0b1120;
-            border-top: 1px solid #334155;
-            margin-top: 40px;
-            font-family: 'Segoe UI', sans-serif;
-            color: #94a3b8;
-        }
-
-        /* Responsif untuk layar HP */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; /* Sembunyikan menu di HP biar rapi */ }
-        }
-    </style>
+  <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">&lt;Ricky/&gt;</div>
-            <ul class="nav-links">
-                <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#tentang">Tentang</a></li>
-                <li><a href="#profil">Profil</a></li>
-                <li><a href="#kontak">Kontak</a></li>
+ 
+  <div class="scanline-overlay" aria-hidden="true"></div>
+
+ 
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+        <span class="brand-path">ricky<span class="text-blue">@</span>winata<span class="text-dim">:~</span></span>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu navigasi" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link" data-section="home">home.html</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">about.md</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">favorites/</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">contact.sh</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    
+    <section id="home" class="hero">
+      <div class="hero-grid">
+
+        <div class="hero-text">
+          <p class="hero-eyebrow reveal">// booting profile.exe</p>
+
+          <h1 class="hero-name reveal">
+            <span id="typedName"></span><span class="cursor cursor-name" aria-hidden="true">▋</span>
+          </h1>
+
+          <p class="hero-type-line reveal">
+            <span class="prompt">$</span>
+            <span id="typedRole"></span><span class="cursor" aria-hidden="true">▋</span>
+          </p>
+
+          <p class="hero-desc reveal">
+            Seorang yang antusias membangun aplikasi web, Coding Python, dan Suka dengan
+            Semua OS (Operating System). Mengetahui Sebagian Kerusakan Komputer maupun Laptop,
+            Mengetahui Teknologi HP Laptop serta Komputer, dan Menggunakan Flask untuk menjalankan backend pribadi.
+          </p>
+
+          <div class="hero-actions reveal">
+            <a href="#projects" class="btn btn-primary">Lihat Favorit</a>
+            <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+          </div>
+        </div>
+
+        <div class="hero-photo reveal">
+          <div class="float-wrapper">
+            <div class="photo-frame" id="photoFrame">
+              <div class="photo-glow" aria-hidden="true"></div>
+              <div class="photo-clip">
+
+                <img
+                  src="../assets/WhatsApp Image 2026-07-20 at 10.10.01.jpeg"
+                  alt="Foto profil Ricky Winata"
+                  id="profileImg"
+                  onerror="this.style.display='none'; this.parentElement.classList.add('no-photo');"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="scroll-hint reveal">
+        <span>scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+   
+    <section id="about" class="about">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">// about</p>
+        <h2 class="section-title">cat about.md</h2>
+      </div>
+
+      <div class="neofetch-card reveal">
+        <pre class="neofetch-art" aria-hidden="true">
+   ╭─────────────╮
+   │   R  ·  W   │
+   │  ┌───┐┌───┐ │
+   │  │ ▓ ││ ▓ │ │
+   │  └───┘└───┘ │
+   │     ﹏﹏     │
+   ╰─────────────╯
+        </pre>
+
+        <div class="neofetch-info">
+          <p class="neofetch-user">ricky<span class="text-blue">@</span>portfolio</p>
+          <div class="neofetch-rule"></div>
+
+          <ul class="neofetch-list">
+            <li><span class="key">OS</span><span class="val">Windows And Linux</span></li>
+            <li><span class="key">Shell</span><span class="val">zsh + oh-my-zsh</span></li>
+            <li><span class="key">Role</span><span class="val">Web Developer</span></li>
+            <li><span class="key">Languages</span><span class="val">Python, JavaScript, HTML/CSS</span></li>
+            <li><span class="key">Exploring</span><span class="val">Linux internals, technology</span></li>
+            <li><span class="key">status</span><span class="val highlight">YNTTKTS</span></li>
+            <li><span class="key">Watching</span><span class="val">Anime fantasy &amp; romance</span></li>
+            <li><span class="key">Uptime</span><span class="val">Kurang tw</span></li>
+          </ul>
+
+          <div class="neofetch-palette" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <p class="about-note reveal">
+        Ketika nggak lagi ngoding, biasanya saya lagi bantuin orang tua saya bekerja di bengkel,
+        Bermain Game, atau maraton anime romance sambil ngomong "when yh? gw?"
+      </p>
+    </section>
+
+   
+    <section id="projects" class="projects">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">// favorites</p>
+        <h2 class="section-title">cat ~/waifu.txt</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <article class="project-card reveal">
+          <div class="card-bar">
+            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+            <span class="card-filename">Kaoruko Waguri</span>
+          </div>
+          <div class="card-body">
+            <img src="../assets/Kaouruko Waguri.jpg" alt="Nama Karakter — Judul Anime" class="card-img">
+            <h3>Nama Karakter <span class="tag tag-blue">Kaoru Hana wa Rin to Saku</span></h3>
+            <div class="fav-rating" aria-label="Rating 5 dari 5 bintang">★★★★★</div>
+            <ul class="fav-reasons">
+              <li>Dia Cantik Dan Baik sekali terhadap pasangannya </li>
+              <li>pendek dan imutttt</li>
+              <li>Gw When Yh dapetin cewek kayak dia</li>
             </ul>
-        </nav>
-    </header>
+            <p class="fav-status">Status: <span class="tag tag-amber">Best Girl</span></p>
+          </div>
+        </article>
 
-    <section id="beranda" class="hero">
-        <div class="hero-badge">Siswa XII.4 - SMAN 1 Pangkah</div>
-        <h1>RICKY WINATA</h1>
-        
-        <div class="typewriter">
-            <h2>> Calon Web Developer & Cybersecurity_</h2>
-        </div>
+        <article class="project-card reveal">
+          <div class="card-bar">
+            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+            <span class="card-filename">Mahiru Shiina</span>
+          </div>
+          <div class="card-body">
+            <img src="../assets/Mahiru Shiina - The Angel Next Door Spoils Me Rotten Season 2  - Anime Icon.jpg" alt="Nama Karakter — Judul Anime" class="card-img">
+            <h3>Nama Karakter <span class="tag tag-green">Otonari no Tenshi-sama ni Itsunomanika Dame Ningen ni Sareteita Ken</span></h3>
+            <div class="fav-rating" aria-label="Rating 5 dari 5 bintang">★★★★★</div>
+            <ul class="fav-reasons">
+              <li>Lembut Dan kasih sayang banget sama pasangannya terus clingy bangett</li>
+              <li>Bisa Masak Dan bikinin makanan favorite pasangannya</li>
+              <li>Gw When yh?</li>
+            </ul>
+            <p class="fav-status">Status: <span class="tag tag-green">Waifu #2</span></p>
+          </div>
+        </article>
 
-        <div class="quote">
-            <p>"Jika mereka menertawakanmu, maka biarkanlah mereka tertawa sampai puas."</p>
-        </div>
+        <article class="project-card reveal">
+          <div class="card-bar">
+            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+            <span class="card-filename">Kujou Alisa Mikhailovna</span>
+          </div>
+          <div class="card-body">
+            <img src="../assets/𝐊𝐮𝐣𝐨𝐮 𝐀𝐥𝐢𝐬𝐚 𝐌𝐢𝐤𝐡𝐚𝐢𝐥𝐨𝐯𝐧𝐚.jpg" alt="Nama Karakter — Judul Anime" class="card-img">
+            <h3>Alya Kujou <span class="tag tag-amber">Roshidere</span></h3>
+            <div class="fav-rating" aria-label="Rating 5 dari 5 bintang">★★★★★</div>
+            <ul class="fav-reasons">
+              <li>Sifat Tsundere nya dan saat marah menggunakan bahasa rusia yang membuatnya imut</li>
+              <li>typikal cewek yang selalu dengerin curhatan pasangannya</li>
+              <li>Gw When Yh?</li>
+            </ul>
+            <p class="fav-status">Status: <span class="tag tag-amber">Waifu #3</span></p>
+          </div>
+        </article>
+
+      </div>
     </section>
 
-    <section id="tentang">
-        <h2 class="section-title">📚 Tentang Saya</h2>
-        <div class="grid-container" style="grid-template-columns: 1fr;">
-            <div class="card">
-                <h3><i class="fas fa-user-astronaut"></i> Cita-Cita & Visi</h3>
-                <p>Halo! Saya adalah siswa SMAN 1 PANGKAH jurusan IPS yang sangat bersemangat di bidang <strong>Informatika dan Matematika</strong>. Meskipun saya tidak terlalu aktif dalam kegiatan sekolah karena merasa kurang menantang, saya sangat fokus pada tujuan masa depan saya.</p>
-                <br>
-                <p>Cita-cita saya adalah melanjutkan studi di jurusan Teknik Informatika dan membangun karir sebagai <strong>Web Developer</strong> atau spesialis <strong>Cybersecurity</strong>. Saya percaya bahwa pengalaman, jam terbang, dan kemampuan problem-solving adalah kunci utama untuk mencapai kesuksesan di dunia teknologi masa kini.</p>
-            </div>
+    
+    <section id="contact" class="contact">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">// contact</p>
+        <h2 class="section-title">./contact.sh</h2>
+      </div>
+
+      <div class="contact-terminal reveal">
+        <div class="card-bar">
+          <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+          <span class="card-filename">contact.sh</span>
         </div>
-    </section>
 
-    <section id="profil">
-        <h2 class="section-title">⚡ Profil & Minat</h2>
-        <div class="grid-container">
-            
-            <div class="card">
-                <h3><i class="fas fa-trophy"></i> Prestasi & Kegiatan</h3>
-                <ul>
-                    <li><strong>Organisasi:</strong> Tidak Ada</li>
-                    <li><strong>Prestasi:</strong> Dalam proses pencarian</li>
-                    <li><strong>Kegiatan Sukarelawan:</strong> Membantu orang tua bekerja saat hari libur.</li>
-                </ul>
-            </div>
+        <div class="contact-body">
+          <p class="contact-cmd"><span class="prompt">$</span> echo "Mari terhubung!"</p>
+          <p class="contact-out">Mari terhubung!</p>
 
-            <div class="card">
-                <h3><i class="fas fa-code"></i> Keahlian (Skills)</h3>
-                <ul>
-                    <li><strong>Coding Dasar:</strong> Mulai mempelajari fundamental web development (HTML, CSS, JS).</li>
-                    <li><strong>Mekanik:</strong> Memiliki pemahaman di bidang teknis dan mesin.</li>
-                    <li><strong>Problem Solving:</strong> Mampu memecahkan masalah logika matematika.</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3><i class="fas fa-gamepad"></i> Minat & Hobi</h3>
-                <ul>
-                    <li><strong>Hobi Utama:</strong> Coding Dasar & Bermain Game.</li>
-                    <li><strong>Minat Khusus:</strong> Komputer, Perangkat Keras, dan Teknologi Masa Kini.</li>
-                    <li><strong>Waktu Luang:</strong> Ngulik teknologi terbaru.</li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="kontak">
-        <h2 class="section-title">💬 Hubungi Saya</h2>
-        <div class="social-links">
-            <a href="https://www.instagram.com/rvn.ata?igsh=MWw4MHNmZG1pMWFiYw==" target="_blank" class="social-btn">
-                <i class="fab fa-instagram" style="color: #E1306C; font-size: 1.2rem;"></i> Instagram
+          <div class="contact-links">
+            <a href="mailto:rikiwinata2@gmail.com" class="contact-item">
+              <svg viewBox="0 0 24 24" class="icon"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm0 2.4V18h18V7.4l-9 6.3-9-6.3ZM4.3 6l7.7 5.4L19.7 6H4.3Z" fill="currentColor"/></svg>
+              <span>rikiwinata2@gmail.com</span>
             </a>
-            <a href="mailto:rickywinata80@gmail.com" class="social-btn">
-                <i class="fas fa-envelope" style="color: #ea4335; font-size: 1.2rem;"></i> Email Saya
+            <a href="https://github.com/rickwinata45" target="_blank" rel="noopener" class="contact-item">
+              <svg viewBox="0 0 24 24" class="icon"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.53 9.53 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" fill="currentColor"/></svg>
+              <span>github.com/rickwinata45</span>
             </a>
-            <a href="https://www.threads.com/@rvn.ata" target="_blank" class="social-btn">
-                <i class="fab fa-threads" style="color: #fff; font-size: 1.2rem;"></i> Threads
+            <a href="https://www.instagram.com/riccujod?igsh=MWw4MHNmZG1pMWFiYw==" target="_blank" rel="noopener" class="contact-item">
+              <svg viewBox="0 0 24 24" class="icon"><path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.16.55.55.9 1.1 1.16 1.77.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.16 1.77 4.9 4.9 0 0 1-1.77 1.16c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.77-1.16 4.9 4.9 0 0 1-1.16-1.77c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.22 1.16-1.77A4.9 4.9 0 0 1 5.45.99a4.9 4.9 0 0 1 2.43-.47C8.94 2.01 9.28 2 12 2Zm0 2c-2.67 0-2.99.01-4.04.06-.87.04-1.34.18-1.65.3-.42.16-.71.35-1.02.66-.31.31-.5.6-.66 1.02-.12.31-.26.78-.3 1.65C4.28 8.74 4.27 9.06 4.27 12s.01 3.26.06 4.31c.04.87.18 1.34.3 1.65.16.42.35.71.66 1.02.31.31.6.5 1.02.66.31.12.78.26 1.65.3 1.05.05 1.37.06 4.04.06s2.99-.01 4.04-.06c.87-.04 1.34-.18 1.65-.3.42-.16.71-.35 1.02-.66.31-.31.5-.6.66-1.02.12-.31.26-.78.3-1.65.05-1.05.06-1.37.06-4.31s-.01-3.26-.06-4.31c-.04-.87-.18-1.34-.3-1.65a2.8 2.8 0 0 0-.66-1.02 2.8 2.8 0 0 0-1.02-.66c-.31-.12-.78-.26-1.65-.3C14.99 4.01 14.67 4 12 4Zm0 3.4A4.6 4.6 0 1 1 12 16.6 4.6 4.6 0 0 1 12 7.4Zm0 2A2.6 2.6 0 1 0 12 14.6 2.6 2.6 0 0 0 12 9.4Zm5.85-2.6a1.08 1.08 0 1 1-2.15 0 1.08 1.08 0 0 1 2.15 0Z" fill="currentColor"/></svg>
+              <span>@riccujod</span>
             </a>
+          </div>
         </div>
+      </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Ricky Winata. Developed with ☕ and Code.</p>
-    </footer>
+  </main>
 
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <p class="footer-prompt"><span class="prompt">$</span> whoami <span class="cursor" aria-hidden="true">▋</span></p>
+    <p class="footer-copy">© 2026 Ricky Winata. Dibuat 20-July-2026</p>
+  </footer>
+
+  <script src="../static/script.js"></script>
 </body>
 </html>
-
